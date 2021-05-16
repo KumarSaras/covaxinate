@@ -1,0 +1,37 @@
+{
+	"attachments": [
+		{
+			"blocks": [
+				{
+					"type": "header",
+					"text": {
+						"type": "plain_text",
+						"text": "Vaccine Slots Available",
+						"emoji": true
+					}
+				},
+				{
+					"type": "divider"
+				},
+				{
+					"type": "context",
+					"elements": [
+						{
+							"type": "plain_text",
+							"text": "Author: K A Applegate",
+							"emoji": true
+						},
+						{
+							"type": "plain_text",
+							"text": "Author: K A Applegate",
+							"emoji": true
+						}
+					]
+				},
+				{
+					"type": "divider"
+				}
+			]
+		}
+	]
+}

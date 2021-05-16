@@ -12,9 +12,9 @@ type Session struct {
 	Address      string
 	StateName    string `json:"state_name"`
 	DistrictName string `json:"district_name"`
-	date         string
+	Date         string
 	Capacity     int `json:"available_capacity"`
 	AgeLimit     int `json:"min_age_limit"`
-	vaccine      string
-	slots        []string
+	Vaccine      string
+	Slots        []string
 }
