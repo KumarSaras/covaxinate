@@ -1,0 +1,326 @@
+{
+    "blocks": [
+        {
+            "type": "header",
+            "text": {
+                "type": "plain_text",
+                "text": "Please select a state for which you want to enable notifications. You will receive the notification every 15 mins.",
+                "emoji": true
+            }
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "Please select a state"
+            },
+            "accessory": {
+                "type": "static_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Select a state",
+                    "emoji": true
+                },
+                "options": [
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Andaman and Nicobar Islands(1)",
+                            "emoji": true
+                        },
+                        "value": "1"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Andhra Pradesh(2)",
+                            "emoji": true
+                        },
+                        "value": "2"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Arunachal Pradesh(3)",
+                            "emoji": true
+                        },
+                        "value": "3"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Assam(4)",
+                            "emoji": true
+                        },
+                        "value": "4"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Bihar(5)",
+                            "emoji": true
+                        },
+                        "value": "5"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Chandigarh(6)",
+                            "emoji": true
+                        },
+                        "value": "6"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Chhattisgarh(7)",
+                            "emoji": true
+                        },
+                        "value": "7"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Dadra and Nagar Haveli(8)",
+                            "emoji": true
+                        },
+                        "value": "8"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Daman and Diu(37)",
+                            "emoji": true
+                        },
+                        "value": "37"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Delhi(9)",
+                            "emoji": true
+                        },
+                        "value": "9"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Goa(10)",
+                            "emoji": true
+                        },
+                        "value": "10"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Gujarat(11)",
+                            "emoji": true
+                        },
+                        "value": "11"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Haryana(12)",
+                            "emoji": true
+                        },
+                        "value": "12"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Himachal Pradesh(13)",
+                            "emoji": true
+                        },
+                        "value": "13"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Jammu and Kashmir(14)",
+                            "emoji": true
+                        },
+                        "value": "14"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Jharkhand(15)",
+                            "emoji": true
+                        },
+                        "value": "15"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Karnataka(16)",
+                            "emoji": true
+                        },
+                        "value": "16"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Kerala(17)",
+                            "emoji": true
+                        },
+                        "value": "17"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Ladakh(18)",
+                            "emoji": true
+                        },
+                        "value": "18"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Lakshadweep(19)",
+                            "emoji": true
+                        },
+                        "value": "19"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Madhya Pradesh(20)",
+                            "emoji": true
+                        },
+                        "value": "20"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Maharashtra(21)",
+                            "emoji": true
+                        },
+                        "value": "21"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Manipur(22)",
+                            "emoji": true
+                        },
+                        "value": "22"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Meghalaya(23)",
+                            "emoji": true
+                        },
+                        "value": "23"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Mizoram(24)",
+                            "emoji": true
+                        },
+                        "value": "24"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Nagaland(25)",
+                            "emoji": true
+                        },
+                        "value": "25"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Odisha(26)",
+                            "emoji": true
+                        },
+                        "value": "26"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Puducherry(27)",
+                            "emoji": true
+                        },
+                        "value": "27"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Punjab(28)",
+                            "emoji": true
+                        },
+                        "value": "28"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Rajasthan(29)",
+                            "emoji": true
+                        },
+                        "value": "29"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Sikkim(30)",
+                            "emoji": true
+                        },
+                        "value": "30"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Tamil Nadu(31)",
+                            "emoji": true
+                        },
+                        "value": "31"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Telangana(32)",
+                            "emoji": true
+                        },
+                        "value": "32"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Tripura(33)",
+                            "emoji": true
+                        },
+                        "value": "33"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Uttar Pradesh(34)",
+                            "emoji": true
+                        },
+                        "value": "34"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "Uttarakhand(35)",
+                            "emoji": true
+                        },
+                        "value": "35"
+                    },
+                    {
+                        "text": {
+                            "type": "plain_text",
+                            "text": "West Bengal(36)",
+                            "emoji": true
+                        },
+                        "value": "36"
+                    }
+                ],
+                "action_id": "static_select-action-states"
+            }
+        }
+    ]
+}

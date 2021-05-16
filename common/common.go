@@ -86,7 +86,7 @@ func getAvailability(district string, minAge string, vaccine string) (Response, 
 		for _, session := range jsonResponse.Sessions {
 			// fmt.Printf("Session - %v - %v - %v - %v", session.AgeLimit, minAge, session.Vaccine, vaccine)
 			// fmt.Println()
-			if strconv.Itoa(session.AgeLimit) == minAge && (len(vaccine) == 0 || strings.EqualFold(vaccine, session.Vaccine)) {
+			if strconv.Itoa(session.AgeLimit) == minAge && (len(vaccine) == 0 || strings.EqualFold(vaccine, session.Vaccine) || vaccine == "Any") {
 				customerResponse.Sessions = append(customerResponse.Sessions, session)
 			}
 		}

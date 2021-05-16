@@ -1,0 +1,113 @@
+{
+	"blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Please select the district for which you want to enable notifications",
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Please select a district"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select a district",
+					"emoji": true
+				},
+				"options": [],
+				"action_id": "static_select-action-districts"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Please select a vaccine"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select a vaccine",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Covaxin",
+							"emoji": true
+						},
+						"value": "COVAXIN"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "Covishield",
+							"emoji": true
+						},
+						"value": "COVISHIELD"
+					}
+				],
+				"action_id": "static_select-action-vaccine"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": "Select an age group",
+				"emoji": true
+			}
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "radio_buttons",
+					"options": [
+						{
+							"text": {
+								"type": "plain_text",
+								"text": "45+",
+								"emoji": true
+							},
+							"value": "value-0"
+						},
+						{
+							"text": {
+								"type": "plain_text",
+								"text": "18-44",
+								"emoji": true
+							},
+							"value": "18"
+						}
+					],
+					"action_id": "actionId-age"
+				}
+			]
+		},
+        {
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "Submit",
+						"emoji": true
+					},
+					"value": "Submit",
+					"action_id": "actionId-submit"
+				}
+			]
+		}
+	]
+}

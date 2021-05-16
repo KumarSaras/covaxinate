@@ -1,0 +1,29 @@
+{
+	"blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Please select a state for which you want to enable notifications. You will receive the notification every 15 mins.",
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Please select a state"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select a state",
+					"emoji": true
+				},
+				"options": [],
+				"action_id": "static_select-action-states"
+			}
+		}
+	]
+}
