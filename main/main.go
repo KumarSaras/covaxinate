@@ -98,7 +98,14 @@ func main() {
 		}
 	})
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	//Adding port for heroku
+	port := os.Getenv("PORT")
+	if len(port) == 0 {
+		port = ":8080"
+	} else {
+		port = ":" + port
+	}
+	if err := http.ListenAndServe(port, nil); err != nil {
 		panic(err)
 	}
 }
