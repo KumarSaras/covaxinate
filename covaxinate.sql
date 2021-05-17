@@ -1,0 +1,1 @@
+create table user_details(id serial primary key, user_id text not null, district_id integer not null, slot integer not null, center_ids integer[] default array[]::integer[], datetime timestamp, min_age text not null default 45, vaccine text);

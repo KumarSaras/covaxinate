@@ -83,6 +83,7 @@ func getAvailability(district string, minAge string, vaccine string) (Response, 
 		req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36")
 		res, resErr := client.Do(req)
 		if resErr != nil {
+			fmt.Println(resErr)
 			return Response{}, resErr
 		}
 
