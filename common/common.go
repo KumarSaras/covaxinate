@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"strconv"
@@ -73,7 +74,7 @@ func getAvailability(district string, minAge string, vaccine string) (Response, 
 	client := &http.Client{}
 	var customerResponse Response
 	customerResponse.Sessions = make([]Session, 0)
-
+	fmt.Println("Checking availability")
 	for i := 0; i < 5; i++ {
 		currentDate := time.Now().AddDate(0, 0, i)
 		date := fmt.Sprintf("%02d-%02d-%d", currentDate.Day(), currentDate.Month(), currentDate.Year())
@@ -87,13 +88,18 @@ func getAvailability(district string, minAge string, vaccine string) (Response, 
 			return Response{}, resErr
 		}
 
+		resB, _ := ioutil.ReadAll(res.Body)
+
+		fmt.Printf("Response- %v", string(resB))
+		fmt.Println()
+
 		var jsonResponse Response
 
 		json.NewDecoder(res.Body).Decode(&jsonResponse)
 
 		for _, session := range jsonResponse.Sessions {
-			// fmt.Printf("Session - %v - %v - %v - %v", session.AgeLimit, minAge, session.Vaccine, vaccine)
-			// fmt.Println()
+			fmt.Printf("Session - %v - %v - %v - %v", session.AgeLimit, minAge, session.Vaccine, vaccine)
+			fmt.Println()
 			if strconv.Itoa(session.AgeLimit) == minAge && (len(vaccine) == 0 || strings.EqualFold(vaccine, session.Vaccine) || vaccine == "Any") {
 				customerResponse.Sessions = append(customerResponse.Sessions, session)
 			}
