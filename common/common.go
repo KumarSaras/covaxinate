@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -29,12 +30,12 @@ func Register(user User, regCallback func(err error, userID string)) {
 	defer db.Close()
 	stmt, err := db.Prepare("insert into user_details(user_id, district_id, slot, min_age, vaccine) values( $1, $2, $3, $4, $5 )")
 	if err != nil {
-		fmt.Printf("cannot prepare statement - %v", err)
+		log.Printf("cannot prepare statement - %v", err)
 		regCallback(err, user.ID)
 	}
 	_, err = stmt.Exec(user.ID, user.District, getSlot(), user.MinAge, user.Vaccine)
 	if err != nil {
-		fmt.Printf("cannot insert user - %v", err)
+		log.Printf("cannot insert user - %v", err)
 		regCallback(err, user.ID)
 	}
 	//getAvailability(strconv.Itoa(user.District), user.MinAge, user.Vaccine)
@@ -74,7 +75,7 @@ func getAvailability(district string, minAge string, vaccine string) (Response, 
 	client := &http.Client{}
 	var customerResponse Response
 	customerResponse.Sessions = make([]Session, 0)
-	fmt.Println("Checking availability")
+	log.Println("Checking availability")
 	for i := 0; i < 5; i++ {
 		currentDate := time.Now().AddDate(0, 0, i)
 		date := fmt.Sprintf("%02d-%02d-%d", currentDate.Day(), currentDate.Month(), currentDate.Year())
@@ -84,22 +85,20 @@ func getAvailability(district string, minAge string, vaccine string) (Response, 
 		req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36")
 		res, resErr := client.Do(req)
 		if resErr != nil {
-			fmt.Println(resErr)
+			log.Println(resErr)
 			return Response{}, resErr
 		}
 
 		resB, _ := ioutil.ReadAll(res.Body)
 
-		fmt.Printf("Response- %v", string(resB))
-		fmt.Println()
+		log.Printf("Response- %v", string(resB))
 
 		var jsonResponse Response
 
 		json.NewDecoder(res.Body).Decode(&jsonResponse)
 
 		for _, session := range jsonResponse.Sessions {
-			fmt.Printf("Session - %v - %v - %v - %v", session.AgeLimit, minAge, session.Vaccine, vaccine)
-			fmt.Println()
+			log.Printf("Session - %v - %v - %v - %v", session.AgeLimit, minAge, session.Vaccine, vaccine)
 			if strconv.Itoa(session.AgeLimit) == minAge && (len(vaccine) == 0 || strings.EqualFold(vaccine, session.Vaccine) || vaccine == "Any") {
 				customerResponse.Sessions = append(customerResponse.Sessions, session)
 			}
@@ -115,7 +114,7 @@ var pollCallbackFunc func(userID string, response Response)
 func pollAvailability() {
 	db := openDBConn()
 	defer db.Close()
-	fmt.Printf("CurrentSlot - %d", currentSlot)
+	log.Printf("CurrentSlot - %d", currentSlot)
 	res, err := db.Query("select district_id, min_age, vaccine, user_id, center_ids from user_details where slot=$1", currentSlot)
 	if err != nil {
 		panic(err)
@@ -128,8 +127,7 @@ func pollAvailability() {
 		var minAge, vaccine, userID string
 		var centerIDs []sql.NullInt64
 		res.Scan(&districtID, &minAge, &vaccine, &userID, pq.Array(&centerIDs))
-		fmt.Printf("%v - %v - %v - %v - %v", districtID, minAge, vaccine, userID, len(centerIDs))
-		fmt.Println()
+		log.Printf("%v - %v - %v - %v - %v", districtID, minAge, vaccine, userID, len(centerIDs))
 		jsonResponse, availErr := getAvailability(strconv.Itoa(districtID), minAge, vaccine)
 		if availErr != nil {
 			panic(err)
@@ -139,8 +137,7 @@ func pollAvailability() {
 		for _, ci := range centerIDs {
 			centerIDMap[ci.Int64] = true
 		}
-		fmt.Printf("CIMap - %v", len(centerIDMap))
-		fmt.Println()
+		log.Printf("CIMap - %v", len(centerIDMap))
 		if len(jsonResponse.Sessions) != 0 {
 			if len(centerIDs) == 0 {
 				callbackResponse.Sessions = jsonResponse.Sessions
@@ -148,8 +145,7 @@ func pollAvailability() {
 					queryString := "update user_details set center_ids = array_append(center_ids, " + strconv.Itoa(session.CenterID) + ") where user_id='" + userID + "'"
 					_, e := db.Exec(queryString)
 					if e != nil {
-						fmt.Printf("DB Error when centerID = 0 - %v", e)
-						fmt.Println()
+						log.Printf("DB Error when centerID = 0 - %v", e)
 					}
 				}
 			} else {
@@ -164,8 +160,7 @@ func pollAvailability() {
 				queryString := "update user_details set center_ids = $1 where user_id=$2"
 				_, e := db.Exec(queryString, pq.Array(centerIDsList), userID)
 				if e != nil {
-					fmt.Printf("DB Error - %v", e)
-					fmt.Println()
+					log.Printf("DB Error - %v", e)
 				}
 			}
 		} else {
@@ -174,11 +169,10 @@ func pollAvailability() {
 				queryString := "update user_details set center_ids = $1 where user_id=$2"
 				_, e := db.Exec(queryString, pq.Array(emptyCenterIDs), userID)
 				if e != nil {
-					fmt.Printf("DB Error - %v", e)
-					fmt.Println()
+					log.Printf("DB Error - %v", e)
 				}
 			}
-			fmt.Println("Slots not available")
+			log.Println("Slots not available")
 		}
 		pollCallbackFunc(userID, callbackResponse)
 	}
@@ -191,6 +185,6 @@ func Poll(pollCallback func(userID string, response Response)) {
 	pollCallbackFunc = pollCallback
 	c := cron.New()
 	c.AddFunc("@every 15s", pollAvailability)
-	fmt.Println("Starting cron")
+	log.Println("Starting cron")
 	c.Start()
 }
